@@ -15,6 +15,7 @@ public class Main {
     // Read Line by Line
     String[] read;
     while ((read = reader.readNext()) != null) {
+      // Print out results.
       System.out.println("Name: " + read[0]);
       System.out.println("Date: " + read[1]);
       System.out.println("EntryPoint: " + read[2]);
