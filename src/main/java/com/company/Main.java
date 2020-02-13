@@ -4,7 +4,6 @@ import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvValidationException;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
@@ -16,9 +15,6 @@ public class Main {
 
   static Connection conn;
   private static final String CSV_FILE = "src/Data/bookstore_report2.csv";
-
-  public Main() throws FileNotFoundException {
-  }
 
   public static void main(String[] args) throws IOException, CsvValidationException {
     // Literally just calls our parser right now (....and is called for tests)
@@ -37,6 +33,7 @@ public class Main {
     JsonReader jread = new JsonReader(new FileReader("src/Data/authors.json"));
     AuthorParser[] authors = gson.fromJson(jread, AuthorParser[].class);
 
+    // Reads each element of the json file and assigns them to temp values to the send to the Database.
     for (var element : authors) {
       String tempName = element.getName();
       String tempEmail = element.getEmail();
@@ -68,8 +65,8 @@ public class Main {
       String tempPublisher = read[3];
 
       // No place to store yet.
-      String tempStore = read[4];
-      String tempLocation = read[5];
+//      String tempStore = read[4];
+//      String tempLocation = read[5];
 
       try {
         // Prepared Statement that inserts information about the book from the bookstore_report2.csv file
